@@ -3,11 +3,16 @@ import { TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 function AddItem(props) {
-  const [text, setText] = useState('Empty');
+  const [text, setText] = useState('');
 
   const saveChange = (val) => {
     setText(val);
   };
+
+  const addItem = ()=>{
+    setText('')
+    props.addItem(text)
+  }
 
   return (
     <View style={styles.todoInput}>
@@ -15,10 +20,10 @@ function AddItem(props) {
         placeholder="Enter To Do ..."
         placeholderTextColor="white"
         style={styles.input}
-        value={props.text}
+        value={text}
         onChangeText={saveChange}
       />
-      <TouchableOpacity onPress={()=>props.addItem(text)}>
+      <TouchableOpacity onPress={addItem}>
         <View>
           <FontAwesome name="send" size={24} color="white" />
         </View>
